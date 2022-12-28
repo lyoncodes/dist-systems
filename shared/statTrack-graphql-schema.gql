@@ -1,0 +1,25 @@
+# query root
+# returns:
+## pid - an integer representing the process id of the query
+## round - a Round based on the id passed as an argument to the query
+
+type Query {
+  round(id: ID): Round
+  pid: Int
+}
+type Round {
+  id: ID!
+  course: Course!
+}
+type Course {
+  id: ID!
+  name: String
+  holes: [Hole]!
+}
+type Hole {
+  id: ID!
+  name: String
+  order: Int!
+  score: Int!
+  putts: Int
+}

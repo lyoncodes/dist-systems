@@ -1,0 +1,19 @@
+# query root
+# returns:
+## pid - an integer representing the process id of the query
+## recipe - a Recipe based on the id passed as an argument to the query
+type Query {
+  recipe(id: ID): Recipe
+  pid: Int
+}
+type Recipe {
+  id: ID!
+  name: String!
+  steps: String
+  ingredients: [Ingredient]!
+}
+type Ingredient {
+  id: ID!
+  name: String!
+  quantity: String
+}
