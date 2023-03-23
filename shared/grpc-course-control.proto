@@ -1,0 +1,51 @@
+syntax = "proto3";
+option java_multiple_files = "io.courseControl.routeguide";
+option java_outer_classname = "RouteGuideProto";
+option objc_class_prefix = "CGRTG";
+package courseControl;
+
+service TeeTimeService {
+    rpc GetTeeTime(TeeTimeRequest) returns (TeeTime) {} // "simple": one request message, one response message 
+    rpc GetMetaData(Empty) returns (Meta) {}
+}
+service RouteGuideService {
+    rpc GetFeature(Point) returns (Feature) {} // a simple RPC, obtains the feature at a given point
+    // rpc ListFeatures(Rectangle) returns (stream Feature) {} // server-side stream
+    // rpc RecordRoute(stream Point) returns (RouteSummary) {} // client-side stream
+    // rpc RouteChat(stream RouteNote) returns (stream RouteNote) {} // bi-directional stream
+}
+message TeeTime {
+    int32 id = 1;
+    string time = 2;
+    int32 startingHole = 3;
+    repeated Golfer golfers = 4;
+}
+message Golfer {
+    int32 id = 1;
+    string name = 2;
+    bool paid = 3;
+    bool member = 4;
+}
+message TeeTimeRequest {
+    int32 id = 1;
+}
+message Meta {
+    int32 pid = 2;
+}
+message Empty {}
+// Route message types:
+// Point:
+// Points are represented as latitude-longitude pairs in the E7 representation
+// (degrees multiplied by 10**7 and rounded to the nearest integer).
+// Latitudes should be in the range +/- 90 degrees and longitude should be in
+// the range +/- 180 degrees (inclusive).
+message Point {
+  int32 latitude = 1;
+  int32 longitude = 2;
+}
+message Feature {
+  // The name of the feature.
+  string name = 1;
+  // The point where the feature is detected.
+  Point location = 2;
+}

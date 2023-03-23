@@ -25,9 +25,9 @@ const resolvers = {
   Course: {
     holes: async (obj) => {
       return [
-        { id: 1, name: "big 5", order: 1, score: 5, putts: 2 },
-        { id: 2, name: "little wing", order: 2, score: 4, putts: 2 },
-        { id: 3, name: "flower mound", order: 3, score: 3, putts: 2 },
+        { id: 1, name: "1", order: 1, par: 5 },
+        { id: 2, name: "2", order: 2, par: 4 },
+        { id: 3, name: "3", order: 3, par: 3 },
       ];
     },
   },
